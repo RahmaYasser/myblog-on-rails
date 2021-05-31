@@ -13,6 +13,8 @@ class SubscribersController < ApplicationController
     render json: @subscriber
   end
 
+
+
   # POST /subscribers
   def create
     @subscriber = Subscriber.new(subscriber_params)
@@ -20,7 +22,7 @@ class SubscribersController < ApplicationController
     if @subscriber.save
       render json: @subscriber, status: :created, location: @subscriber
     else
-      render json: @subscriber.errors, status: :unprocessable_entity
+      render json: @subscriber.errors.full_message, status: :unprocessable_entity
     end
   end
 
